@@ -26,4 +26,18 @@ class QssApiClient
 
     return json_decode($response->getBody(), true);
   }
+
+  public function authors()
+  {
+    $accessToken = Session::get('access_token');
+
+    $response = $this->client->get('/api/v2/authors?orderBy=id&direction=ASC&limit=12&page=1',  [
+        'headers' => [
+            'Authorization' => 'Bearer ' . $accessToken,
+            'Accept' => 'application/json',
+        ]
+    ]);
+
+    return json_decode($response->getBody(), true);
+  }
 }
