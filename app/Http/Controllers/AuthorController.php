@@ -17,7 +17,8 @@ class AuthorController extends Controller
   {
     $response = $this->qssApiClient->authors();
 
-    return $response;
-  }
+    $authors = $response['items'];
 
+    return view('author.index',['authors'=>$authors]);
+  }
 }
