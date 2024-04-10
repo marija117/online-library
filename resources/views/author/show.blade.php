@@ -1,5 +1,4 @@
 <h1>{{ $author['first_name'] }} {{ $author['last_name'] }}</h1>
-<p>Biografy: {{ $author['biography'] }}</p>
 <p>Birthday: {{ $author['birthday'] }}</p>
 <p>Gender: {{ $author['gender'] }}</p>
 <p>Place of birth: {{ $author['place_of_birth'] }}</p>
@@ -15,3 +14,14 @@
     <li>{{ $book['number_of_pages'] }}</li>
   @endforeach
 </ul>
+
+@if(! $books)
+    <form action="{{ route('authors.destroy', $author['id']) }}" method="POST">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btn-danger">Delete Author</button>
+    </form>
+@else
+    <button class="btn btn-danger" disabled>Delete Author</button>
+@endif
+

@@ -15,10 +15,10 @@ Route::get('/login', function () {
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 // Route to fetch authors
-Route::get('/authors', [AuthorController::class, 'index']);
+Route::get('/authors', [AuthorController::class, 'index'])->name('authors.index');
 
 // Route to delete an author
-Route::delete('/authors/{id}', [AuthorController::class, 'delete']);
+Route::delete('/authors/{id}', [AuthorController::class, 'destroy'])->name('authors.destroy');
 
 // Route to fetch a single author
 Route::get('/authors/{id}', [AuthorController::class, 'show']);

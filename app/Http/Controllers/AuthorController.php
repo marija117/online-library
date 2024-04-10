@@ -31,4 +31,11 @@ class AuthorController extends Controller
 
     return view('author.show', compact('author', 'books'));
   }
+
+  public function destroy($id)
+  {
+   $response = $this->qssApiClient->deleteAuthor($id);
+
+    return redirect()->route('authors.index')->with('success', 'Author deleted successfully.');
+  }
 }
