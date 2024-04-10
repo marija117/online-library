@@ -40,4 +40,18 @@ class QssApiClient
 
     return json_decode($response->getBody(), true);
   }
+
+  public function showAuthor($id)
+  {
+    $accessToken = Session::get('access_token');
+
+    $response = $this->client->get('/api/v2/authors/'.$id,  [
+        'headers' => [
+            'Authorization' => 'Bearer ' . $accessToken,
+            'Accept' => 'application/json',
+        ]
+    ]);
+
+    return json_decode($response->getBody(), true);
+  }
 }

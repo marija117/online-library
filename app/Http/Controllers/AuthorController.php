@@ -21,4 +21,14 @@ class AuthorController extends Controller
 
     return view('author.index',['authors'=>$authors]);
   }
+
+  public function show($id)
+  {
+    $response = $this->qssApiClient->showAuthor($id);
+
+    $author = $response;
+    $books = $response['books'];
+
+    return view('author.show', compact('author', 'books'));
+  }
 }
