@@ -20,3 +20,5 @@
     @endforeach
   </tbody>
 </table>
+<a href="{{ route('authors.create') }}" class="btn btn-primary">{{ __('Add New Author') }}</a>
+

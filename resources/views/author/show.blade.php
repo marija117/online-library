@@ -16,12 +16,12 @@
 </ul>
 
 @if(! $books)
-    <form action="{{ route('authors.destroy', $author['id']) }}" method="POST">
-        @csrf
-        @method('DELETE')
-        <button type="submit" class="btn btn-danger">Delete Author</button>
-    </form>
+  <form action="{{ route('authors.destroy', $author['id']) }}" method="POST">
+    @csrf
+    @method('DELETE')
+    <button type="submit" class="btn btn-danger">Delete Author</button>
+  </form>
 @else
-    <button class="btn btn-danger" disabled>Delete Author</button>
+  <button class="btn btn-danger" disabled>Delete Author</button>
 @endif
 
