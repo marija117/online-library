@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\QssApiClient;
+use Illuminate\Http\Request;
 
 class AuthorController extends Controller
 {
@@ -30,6 +31,11 @@ class AuthorController extends Controller
     $books = $response['books'];
 
     return view('author.show', compact('author', 'books'));
+  }
+
+  public function create()
+  {
+    return view('author.create');
   }
 
   public function destroy($id)

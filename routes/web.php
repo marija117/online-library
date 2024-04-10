@@ -17,11 +17,11 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 // Route to fetch authors
 Route::get('/authors', [AuthorController::class, 'index'])->name('authors.index');
 
-// Route to delete an author
-Route::delete('/authors/{id}', [AuthorController::class, 'destroy'])->name('authors.destroy');
+// Route to add a new author
+Route::get('/authors/create', [AuthorController::class, 'create'])->name('authors.create');
 
 // Route to fetch a single author
-Route::get('/authors/{id}', [AuthorController::class, 'show']);
+Route::get('/authors/{id}', [AuthorController::class, 'show'])->name('authors.show');
 
-// Route to add a new author
-Route::post('/authors', [AuthorController::class, 'store']);
+// Route to delete an author
+Route::delete('/authors/{id}', [AuthorController::class, 'destroy'])->name('authors.destroy');
