@@ -20,6 +20,7 @@ Route::get('/authors', [AuthorController::class, 'index'])->name('authors.index'
 
 // Route to add a new author
 Route::get('/authors/create', [AuthorController::class, 'create'])->name('authors.create');
+Route::post('/authors', [AuthorController::class, 'store'])->name('authors.store');
 
 // Route to fetch a single author
 Route::get('/authors/{id}', [AuthorController::class, 'show'])->name('authors.show');

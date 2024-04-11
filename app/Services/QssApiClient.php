@@ -19,8 +19,8 @@ class QssApiClient
   {
     $response = $this->client->post('/api/v2/token', [
       'json' => [
-          'email' => $email,
-          'password' => $password,
+        'email' => $email,
+        'password' => $password,
       ]
     ]);
 
@@ -31,11 +31,11 @@ class QssApiClient
   {
     $accessToken = Session::get('access_token');
 
-    $response = $this->client->get('/api/v2/authors?orderBy=id&direction=ASC&limit=12&page=1',  [
-        'headers' => [
-            'Authorization' => 'Bearer ' . $accessToken,
-            'Accept' => 'application/json',
-        ]
+    $response = $this->client->get('/api/v2/authors?orderBy=id&direction=ASC&limit=20&page=1',  [
+      'headers' => [
+        'Authorization' => 'Bearer ' . $accessToken,
+        'Accept' => 'application/json',
+      ]
     ]);
 
     return json_decode($response->getBody(), true);
@@ -46,10 +46,32 @@ class QssApiClient
     $accessToken = Session::get('access_token');
 
     $response = $this->client->get('/api/v2/authors/'.$id,  [
-        'headers' => [
-            'Authorization' => 'Bearer ' . $accessToken,
-            'Accept' => 'application/json',
-        ]
+      'headers' => [
+          'Authorization' => 'Bearer ' . $accessToken,
+          'Accept' => 'application/json',
+      ]
+    ]);
+
+    return json_decode($response->getBody(), true);
+  }
+
+  public function createAuthor($first_name, $last_name, $birthday, $biography, $gender, $place_of_birth)
+  {
+    $accessToken = Session::get('access_token');
+
+    $response = $this->client->post('/api/v2/authors',  [
+      'headers' => [
+        'Authorization' => 'Bearer ' . $accessToken,
+        'Accept' => 'application/json',
+      ],
+      'json' => [
+        'first_name' => $first_name,
+        'last_name' => $last_name,
+        'birthday' => $birthday,
+        'biography' => $biography,
+        'gender' => $gender,
+        'place_of_birth' => $place_of_birth,
+      ]
     ]);
 
     return json_decode($response->getBody(), true);
@@ -60,10 +82,10 @@ class QssApiClient
     $accessToken = Session::get('access_token');
 
     $response = $this->client->delete('/api/v2/authors/'.$id,  [
-        'headers' => [
-            'Authorization' => 'Bearer ' . $accessToken,
-            'Accept' => 'application/json',
-        ]
+      'headers' => [
+          'Authorization' => 'Bearer ' . $accessToken,
+          'Accept' => 'application/json',
+      ]
     ]);
 
     return json_decode($response->getBody(), true);
@@ -99,10 +121,10 @@ class QssApiClient
     $accessToken = Session::get('access_token');
     
     $response = $this->client->delete('/api/v2/books/' . $id,  [
-        'headers' => [
-            'Authorization' => 'Bearer ' . $accessToken,
-            'Accept' => 'application/json',
-        ]
+      'headers' => [
+          'Authorization' => 'Bearer ' . $accessToken,
+          'Accept' => 'application/json',
+      ]
     ]);
 
     return json_decode($response->getBody(), true);
