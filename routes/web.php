@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\AuthorController;
 
 Route::get('/', function () {
@@ -25,3 +26,5 @@ Route::get('/authors/{id}', [AuthorController::class, 'show'])->name('authors.sh
 
 // Route to delete an author
 Route::delete('/authors/{id}', [AuthorController::class, 'destroy'])->name('authors.destroy');
+
+Route::delete('/books/{id}', [BookController::class, 'destroy'])->name('books.destroy');

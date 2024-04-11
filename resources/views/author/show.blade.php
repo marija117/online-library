@@ -12,6 +12,11 @@
     <li>{{ $book['isbn'] }}</li>
     <li>{{ $book['format'] }}</li>
     <li>{{ $book['number_of_pages'] }}</li>
+    <form action="{{ route('books.destroy', $book['id']) }}" method="POST">
+      @csrf
+      @method('DELETE')
+      <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
   @endforeach
 </ul>
 

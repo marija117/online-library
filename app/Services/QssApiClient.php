@@ -68,4 +68,18 @@ class QssApiClient
 
     return json_decode($response->getBody(), true);
   }
+
+  public function deleteBook($id)
+  {
+    $accessToken = Session::get('access_token');
+    
+    $response = $this->client->delete('/api/v2/books/' . $id,  [
+        'headers' => [
+            'Authorization' => 'Bearer ' . $accessToken,
+            'Accept' => 'application/json',
+        ]
+    ]);
+
+    return json_decode($response->getBody(), true);
+  }
 }
