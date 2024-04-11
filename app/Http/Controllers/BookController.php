@@ -24,6 +24,16 @@ class BookController extends Controller
 
   public function store(Request $request)
   {
+    $request->validate([
+      'title' => 'required|string',
+      'author_id' => 'required',
+      'release_date' => 'required|date',
+      'description' => 'required|string',
+      'isbn' => 'required|string',
+      'format' => 'required|string',
+      'number_of_pages' => 'required|integer',
+    ]);
+
     $response = $this->qssApiClient->createBook(
       $request->input('title'),
       $request->input('author_id'),
