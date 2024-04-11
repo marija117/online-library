@@ -30,3 +30,4 @@
   <button class="btn btn-danger" disabled>Delete Author</button>
 @endif
 
+<a href="{{ route('books.create') }}" class="btn btn-primary">Add New Book</a>

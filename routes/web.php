@@ -27,4 +27,7 @@ Route::get('/authors/{id}', [AuthorController::class, 'show'])->name('authors.sh
 // Route to delete an author
 Route::delete('/authors/{id}', [AuthorController::class, 'destroy'])->name('authors.destroy');
 
+Route::get('/books/create', [BookController::class, 'create'])->name('books.create');
+Route::post('/books', [BookController::class, 'store'])->name('books.store');
+
 Route::delete('/books/{id}', [BookController::class, 'destroy'])->name('books.destroy');

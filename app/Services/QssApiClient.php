@@ -18,10 +18,10 @@ class QssApiClient
   public function login($email, $password)
   {
     $response = $this->client->post('/api/v2/token', [
-        'json' => [
-            'email' => $email,
-            'password' => $password,
-        ]
+      'json' => [
+          'email' => $email,
+          'password' => $password,
+      ]
     ]);
 
     return json_decode($response->getBody(), true);
@@ -66,6 +66,31 @@ class QssApiClient
         ]
     ]);
 
+    return json_decode($response->getBody(), true);
+  }
+
+  public function createBook($title, $author_id, $release_date, $description, $isbn, $format, $number_of_pages)
+  {
+    $accessToken = Session::get('access_token');
+
+    $response = $this->client->post('/api/v2/books',  [
+      'headers' => [
+          'Authorization' => 'Bearer ' . $accessToken,
+          'Accept' => 'application/json',
+      ],
+      'json' => [
+        'author' => [
+          'id' => $author_id,
+        ],
+        'title' => $title,
+        'release_date' => $release_date,
+        'description' => $description,
+        'isbn' => $isbn,
+        'format' => $format,
+        'number_of_pages' => (int)$number_of_pages,
+      ]
+    ]);
+  
     return json_decode($response->getBody(), true);
   }
 
