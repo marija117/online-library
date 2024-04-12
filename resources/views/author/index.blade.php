@@ -6,8 +6,7 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
+        <th>Full Name</th>
         <th>Birthday</th>
         <th>Gender</th>
         <th>Place of Birth</th>
@@ -16,9 +15,8 @@
     <tbody>
       @foreach($authors as $author)
       <tr>
-        <td>{{ $author['first_name'] }}</td>
-        <td>{{ $author['last_name'] }}</td>
-        <td>{{ $author['birthday'] }}</td>
+        <td><a href="{{ route('authors.show', $author['id']) }}">{{ $author['first_name'] }} {{ $author['last_name'] }}</a></td>
+        <td>{{ date('F j, Y', strtotime($author['birthday'])) }}</td>
         <td>{{ $author['gender'] }}</td>
         <td>{{ $author['place_of_birth'] }}</td>
       </tr>

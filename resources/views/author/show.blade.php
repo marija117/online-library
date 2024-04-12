@@ -7,7 +7,7 @@
             <div class="card mb-4">
                 <div class="card-body">
                     <h1 class="card-title">{{ $author['first_name'] }} {{ $author['last_name'] }}</h1>
-                    <p class="card-text">Birthday: {{ $author['birthday'] }}</p>
+                    <p class="card-text">Birthday: {{ date('F j, Y', strtotime($author['birthday'])) }}</p>
                     <p class="card-text">Gender: {{ $author['gender'] }}</p>
                     <p class="card-text">Place of birth: {{ $author['place_of_birth'] }}</p>
                 </div>
@@ -44,6 +44,6 @@
     <button class="btn btn-danger mb-2" disabled>Delete Author</button>
     @endif
 
-    <a href="{{ route('books.create') }}" class="btn btn-primary">Add New Book</a>
+    <a href="{{ route('books.create') }}" class="btn btn-primary mb-2">Add New Book</a>
 </div>
 @endsection
