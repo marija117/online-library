@@ -37,7 +37,7 @@
         <label for="title">Number of pages</label>
         <input type="number" class="form-control" id="number_of_pages" name="number_of_pages">
       </div>
-      <button type="submit" class="btn btn-primary">Add Book</button>
+      <button type="submit" class="btn btn-primary mt-2">Add Book</button>
     </form>
     @if ($errors->any())
       <div class="alert alert-danger">

@@ -1,37 +1,49 @@
 @extends('layouts.app')
 
 @section('content')
-  <h1>{{ $author['first_name'] }} {{ $author['last_name'] }}</h1>
-  <p>Birthday: {{ $author['birthday'] }}</p>
-  <p>Gender: {{ $author['gender'] }}</p>
-  <p>Place of birth: {{ $author['place_of_birth'] }}</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h1 class="card-title">{{ $author['first_name'] }} {{ $author['last_name'] }}</h1>
+                    <p class="card-text">Birthday: {{ $author['birthday'] }}</p>
+                    <p class="card-text">Gender: {{ $author['gender'] }}</p>
+                    <p class="card-text">Place of birth: {{ $author['place_of_birth'] }}</p>
+                </div>
+            </div>
 
-  <h2>Books</h2>
-  <ul>
-    @foreach($books as $book)
-      <li>{{ $book['title'] }}</li>
-      <li>{{ $book['release_date'] }}</li>
-      <li>{{ $book['description'] }}</li>
-      <li>{{ $book['isbn'] }}</li>
-      <li>{{ $book['format'] }}</li>
-      <li>{{ $book['number_of_pages'] }}</li>
-      <form action="{{ route('books.destroy', $book['id']) }}" method="POST">
+            <h2>Books</h2>
+            @foreach($books as $book)
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">{{ $book['title'] }}</h5>
+                    <p class="card-text">Release Date: {{ $book['release_date'] }}</p>
+                    <p class="card-text">Description: {{ $book['description'] }}</p>
+                    <p class="card-text">ISBN: {{ $book['isbn'] }}</p>
+                    <p class="card-text">Format: {{ $book['format'] }}</p>
+                    <p class="card-text">Number of Pages: {{ $book['number_of_pages'] }}</p>
+                    <form action="{{ route('books.destroy', $book['id']) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+
+    @if(! $books)
+    <form action="{{ route('authors.destroy', $author['id']) }}" method="POST">
         @csrf
         @method('DELETE')
-        <button type="submit" class="btn btn-danger">Delete</button>
-      </form>
-    @endforeach
-  </ul>
-
-  @if(! $books)
-    <form action="{{ route('authors.destroy', $author['id']) }}" method="POST">
-      @csrf
-      @method('DELETE')
-      <button type="submit" class="btn btn-danger">Delete Author</button>
+        <button type="submit" class="btn btn-danger mb-2">Delete Author</button>
     </form>
-  @else
-    <button class="btn btn-danger" disabled>Delete Author</button>
-  @endif
+    @else
+    <button class="btn btn-danger mb-2" disabled>Delete Author</button>
+    @endif
 
-  <a href="{{ route('books.create') }}" class="btn btn-primary">Add New Book</a>
+    <a href="{{ route('books.create') }}" class="btn btn-primary">Add New Book</a>
+</div>
 @endsection

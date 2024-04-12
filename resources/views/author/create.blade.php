@@ -23,13 +23,16 @@
       </div>
       <div class="form-group">
         <label for="gender">Gender</label>
-        <input id="gender" type="text" class="form-control" name="gender" required>
+        <select id="gender" class="form-control" name="gender" required>
+          <option value="male">male</option>
+          <option value="female">female</option>
+        </select>
       </div>
       <div class="form-group">
         <label for="place_of_birth">Place of birth</label>
         <input id="place_of_birth" type="text" class="form-control" name="place_of_birth" required>
       </div>
-      <button type="submit" class="btn btn-primary">Add Author</button>
+      <button type="submit" class="btn btn-primary mt-2">Add Author</button>
     </form>
     @if ($errors->any())
       <div class="alert alert-danger">
