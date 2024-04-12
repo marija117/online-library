@@ -3,33 +3,27 @@
     <a class="navbar-brand" href="/">Online library</a>
       
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
-        </li>
-        
-        @auth
+      <ul class="navbar-nav ml-auto">  
+        @if(session()->has('user'))
           <li class="nav-item">
             <a class="nav-link" href="{{ route('authors.index') }}">Authors</a>
           </li>
           <li class="nav-item">
-            <span class="nav-link">Welcome, {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</span>
+            <span class="nav-link">Welcome, {{ session('user')['first_name'] }} {{ session('user')['last_name'] }}</span>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 Logout
             </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            <form id="logout-form" action="{{ route('logout') }}" method="GET" style="display: none;">
                 @csrf
             </form>
           </li>
-        @endauth
-          
-        @guest
+        @else          
           <li class="nav-item">
             <a class="nav-link" href="{{ route('login') }}">Login</a>
           </li>
-        @endguest
+        @endif
       </ul>
     </div>
   </div>

@@ -27,6 +27,7 @@ class AuthController extends Controller
       $accessToken = $response['token_key'];
 
       Session::put('access_token', $accessToken);
+      Session::put('user', $response['user']);
 
       return redirect()->route('authors.index');
     } else {
@@ -37,6 +38,8 @@ class AuthController extends Controller
   public function logout()
   {
     Session::forget('access_token');
+    Session::forget('user');
+    
     return redirect()->route('login');
   }
 }
