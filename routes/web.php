@@ -16,6 +16,8 @@ use App\Http\Controllers\AuthorController;
 
   Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
+
+Route::middleware('verify_access_token')->group(function () {
   // Route to fetch authors
   Route::get('/authors', [AuthorController::class, 'index'])->name('authors.index');
 
@@ -33,3 +35,4 @@ use App\Http\Controllers\AuthorController;
   Route::post('/books', [BookController::class, 'store'])->name('books.store');
 
   Route::delete('/books/{id}', [BookController::class, 'destroy'])->name('books.destroy');
+});
